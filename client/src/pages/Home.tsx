@@ -120,85 +120,131 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                 </div>
 
                 <div className="relative z-10">
-                  {/* Header with Live Badge */}
-                  <div className="flex items-start justify-between mb-8">
+                  {/* Header with Live Badge & Last Updated */}
+                  <div className="flex items-start justify-between mb-6">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                         <span className="text-xs font-bold text-green-600 uppercase tracking-wider">Live Metrics</span>
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900 mb-1">Powering Enterprise AI</h3>
-                      <p className="text-gray-600 text-sm">Real-time performance across deployments</p>
+                      <p className="text-gray-600 text-xs">Last updated: 2 hours ago • Refreshes every 12 hours</p>
                     </div>
                   </div>
                   
-                  {/* Stats Grid with Hover Effects */}
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                  {/* Main Stats Grid */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-l-2xl"></div>
                       <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">247</div>
-                      <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Active Agents</div>
+                      <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Total Agents</div>
                     </div>
-                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                    <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-l-2xl"></div>
                       <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">21.5K</div>
                       <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Tasks Today</div>
                     </div>
-                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                    <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-green-500 to-green-600 rounded-l-2xl"></div>
                       <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">$2.8M</div>
                       <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Monthly Value</div>
                     </div>
-                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                    <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-green-500 to-green-600 rounded-l-2xl"></div>
                       <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">99.9%</div>
                       <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Uptime SLA</div>
                     </div>
                   </div>
 
+                  {/* Agent Deployment Breakdown */}
+                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-4 mb-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="text-white font-bold text-sm">Active Deployments by Service</h4>
+                      <span className="text-blue-100 text-xs">247 agents</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Database className="w-3.5 h-3.5 text-blue-200" />
+                          <span className="text-white text-xs font-medium">Lead Generation</span>
+                        </div>
+                        <span className="text-white font-bold text-sm">89</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <MessageSquare className="w-3.5 h-3.5 text-blue-200" />
+                          <span className="text-white text-xs font-medium">Customer Support</span>
+                        </div>
+                        <span className="text-white font-bold text-sm">67</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <BarChart3 className="w-3.5 h-3.5 text-blue-200" />
+                          <span className="text-white text-xs font-medium">Data Analysis</span>
+                        </div>
+                        <span className="text-white font-bold text-sm">54</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <BrainCircuit className="w-3.5 h-3.5 text-blue-200" />
+                          <span className="text-white text-xs font-medium">Content Creation</span>
+                        </div>
+                        <span className="text-white font-bold text-sm">37</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Social Proof Stats */}
+                  <div className="grid grid-cols-3 gap-3 mb-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-gray-900">340%</div>
+                      <div className="text-xs text-gray-600">Avg ROI</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-gray-900">48hr</div>
+                      <div className="text-xs text-gray-600">Deploy Time</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-gray-900">87%</div>
+                      <div className="text-xs text-gray-600">Cost Saved</div>
+                    </div>
+                  </div>
+
                   {/* Divider */}
-                  <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-5"></div>
 
                   {/* Key Benefits - Compact & Clean */}
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 group">
+                  <div className="space-y-2.5 mb-6">
+                    <div className="flex items-center gap-2.5 group">
                       <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-3 h-3 text-white" strokeWidth={3} />
                       </div>
-                      <div className="flex-1">
-                        <span className="text-sm font-semibold text-gray-900">Production-ready in 48 hours</span>
-                      </div>
+                      <span className="text-sm font-semibold text-gray-900">Production-ready in 48 hours</span>
                     </div>
-                    <div className="flex items-center gap-3 group">
+                    <div className="flex items-center gap-2.5 group">
                       <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-3 h-3 text-white" strokeWidth={3} />
                       </div>
-                      <div className="flex-1">
-                        <span className="text-sm font-semibold text-gray-900">87% average cost reduction</span>
-                      </div>
+                      <span className="text-sm font-semibold text-gray-900">SOC 2 & ISO 27001 certified</span>
                     </div>
-                    <div className="flex items-center gap-3 group">
+                    <div className="flex items-center gap-2.5 group">
                       <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-3 h-3 text-white" strokeWidth={3} />
                       </div>
-                      <div className="flex-1">
-                        <span className="text-sm font-semibold text-gray-900">SOC 2 & ISO 27001 certified</span>
-                      </div>
+                      <span className="text-sm font-semibold text-gray-900">24/7 monitoring & support</span>
                     </div>
-                    <div className="flex items-center gap-3 group">
+                    <div className="flex items-center gap-2.5 group">
                       <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                         <Check className="w-3 h-3 text-white" strokeWidth={3} />
                       </div>
-                      <div className="flex-1">
-                        <span className="text-sm font-semibold text-gray-900">24/7 monitoring & support</span>
-                      </div>
+                      <span className="text-sm font-semibold text-gray-900">Money-back guarantee</span>
                     </div>
                   </div>
 
                   {/* CTA Button */}
                   <button 
                     onClick={() => setPage('LiveDashboard')}
-                    className="mt-6 w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3.5 px-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
                   >
                     <span>View Live Dashboard</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
