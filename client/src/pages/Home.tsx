@@ -110,80 +110,100 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                  <CertificationBadges />
             </div>
 
-            {/* Right Content - Stats & Social Proof */}
+            {/* Right Content - Dynamic Stats & Social Proof */}
             <div className="relative">
-              {/* Main Stats Card */}
-              <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-200">
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Trusted by Industry Leaders</h3>
-                  <p className="text-gray-600">Real-time performance metrics</p>
-                </div>
-                
-                {/* Live Stats Grid */}
-                <div className="grid grid-cols-2 gap-6 mb-8">
-                  <div className="text-center p-4 bg-blue-50 rounded-xl">
-                    <div className="text-4xl font-bold text-blue-600 mb-1">247</div>
-                    <div className="text-sm text-gray-600 font-medium">Active AI Agents</div>
-                  </div>
-                  <div className="text-center p-4 bg-blue-50 rounded-xl">
-                    <div className="text-4xl font-bold text-blue-600 mb-1">21.5K</div>
-                    <div className="text-sm text-gray-600 font-medium">Tasks Completed</div>
-                  </div>
-                  <div className="text-center p-4 bg-blue-50 rounded-xl">
-                    <div className="text-4xl font-bold text-blue-600 mb-1">$2.8M</div>
-                    <div className="text-sm text-gray-600 font-medium">Monthly Revenue</div>
-                  </div>
-                  <div className="text-center p-4 bg-blue-50 rounded-xl">
-                    <div className="text-4xl font-bold text-blue-600 mb-1">99.9%</div>
-                    <div className="text-sm text-gray-600 font-medium">Uptime SLA</div>
-                  </div>
+              {/* Gradient Background Card */}
+              <div className="relative bg-gradient-to-br from-blue-50 via-white to-blue-50 rounded-3xl shadow-xl p-8 border border-blue-100 overflow-hidden">
+                {/* Subtle Pattern Overlay */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgb(37, 99, 235) 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
                 </div>
 
-                {/* Key Benefits List */}
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-1 bg-green-100 rounded-full">
-                      <Check className="w-4 h-4 text-green-600" />
-                    </div>
+                <div className="relative z-10">
+                  {/* Header with Live Badge */}
+                  <div className="flex items-start justify-between mb-8">
                     <div>
-                      <div className="font-semibold text-gray-900">Deploy in 48 Hours</div>
-                      <div className="text-sm text-gray-600">From consultation to production</div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs font-bold text-green-600 uppercase tracking-wider">Live Metrics</span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-1">Powering Enterprise AI</h3>
+                      <p className="text-gray-600 text-sm">Real-time performance across deployments</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-1 bg-green-100 rounded-full">
-                      <Check className="w-4 h-4 text-green-600" />
+                  
+                  {/* Stats Grid with Hover Effects */}
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-l-2xl"></div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">247</div>
+                      <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Active Agents</div>
                     </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">87% Cost Reduction</div>
-                      <div className="text-sm text-gray-600">Average savings across clients</div>
+                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-l-2xl"></div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">21.5K</div>
+                      <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Tasks Today</div>
                     </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-1 bg-green-100 rounded-full">
-                      <Check className="w-4 h-4 text-green-600" />
+                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-green-500 to-green-600 rounded-l-2xl"></div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">$2.8M</div>
+                      <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Monthly Value</div>
                     </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">24/7 Monitoring</div>
-                      <div className="text-sm text-gray-600">Real-time alerts and support</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-1 bg-green-100 rounded-full">
-                      <Check className="w-4 h-4 text-green-600" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">Enterprise Security</div>
-                      <div className="text-sm text-gray-600">SOC 2 & ISO 27001 certified</div>
+                    <div className="group relative bg-white rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-green-500 to-green-600 rounded-l-2xl"></div>
+                      <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">99.9%</div>
+                      <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Uptime SLA</div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Floating Badge - Live Status */}
-              <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 animate-pulse">
-                <div className="w-2 h-2 bg-white rounded-full"></div>
-                <span className="font-semibold text-sm">Live Now</span>
+                  {/* Divider */}
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
+
+                  {/* Key Benefits - Compact & Clean */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 group">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-sm font-semibold text-gray-900">Production-ready in 48 hours</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 group">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-sm font-semibold text-gray-900">87% average cost reduction</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 group">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-sm font-semibold text-gray-900">SOC 2 & ISO 27001 certified</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 group">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-sm font-semibold text-gray-900">24/7 monitoring & support</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <button 
+                    onClick={() => setPage('LiveDashboard')}
+                    className="mt-6 w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group"
+                  >
+                    <span>View Live Dashboard</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
 
