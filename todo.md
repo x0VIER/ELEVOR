@@ -1,65 +1,43 @@
-# ELEVOR V7 Full-Stack Migration TODO
+# ELEVOR V7 Enhancement TODO
 
-## Database Schema
-- [x] Create services table for service offerings
-- [x] Create case_studies table with category support
-- [x] Create portfolio_items table
-- [x] Create pricing_plans table
-- [x] Create contact_submissions table
-- [x] Create blog_posts table with category filtering
+## Completed - Original Migration
+- [x] Database schema for content management
+- [x] Live dashboard backend with real-time simulation
+- [x] All frontend components migrated
+- [x] tRPC API endpoints
+- [x] Contact form with email notifications
+- [x] Admin dashboard
 
-## Frontend Component Migration
-- [x] Migrate Header component with navigation
-- [x] Migrate Footer component
-- [x] Migrate Home page with all sections
-- [x] Migrate Services page with service targeting
-- [x] Migrate Portfolio page
-- [x] Migrate CaseStudies page with category filtering
-- [x] Migrate Pricing page
-- [x] Migrate About page
-- [x] Migrate Contact page with form
-- [x] Migrate Blog page integration
-- [x] Preserve scroll-to-top button functionality
+## Current Enhancements
 
-## Tailwind Design System Integration
-- [x] Configure Tailwind with blue accent colors
-- [x] Set up gray color palette
-- [x] Configure Inter font family
-- [ ] Add custom animations (marquee, fadeIn)
-- [ ] Configure custom spacing and keyframes
+### Navigation & Live Dashboard
+- [x] Add "Live Dashboard" link to main navigation
+- [x] Ensure Live Dashboard page is accessible
+- [x] Test dashboard real-time updates
 
-## tRPC API Endpoints
-- [x] Create services router with list/get endpoints
-- [x] Create case studies router with category filtering
-- [x] Create portfolio router
-- [x] Create pricing router
-- [x] Create contact form submission endpoint
-- [x] Create blog posts router with filtering
+### Button Functionality
+- [x] Verify all CTA buttons lead to Contact/Schedule
+- [x] Check all "Learn More" buttons navigate correctly
+- [x] Ensure service cards link properly
+- [x] Test case study navigation
+- [x] Verify pricing buttons work
+- [ ] Add working social media links in footer
 
-## Admin Dashboard
-- [x] Create admin layout with sidebar navigation
-- [x] Implement services CRUD operations
-- [x] Implement case studies CRUD operations
-- [x] Implement portfolio items CRUD operations
-- [x] Implement pricing plans CRUD operations
-- [x] View contact form submissions
-- [x] Role-based access control for admin routes
+### Spacing & Layout Improvements
+- [ ] Review and fix any awkward spacing gaps
+- [ ] Ensure consistent padding/margins
+- [ ] Improve mobile responsiveness
+- [ ] Clean up any crowded sections
 
-## Contact Form & Notifications
-- [x] Build contact form with validation
-- [x] Implement backend validation with Zod
-- [x] Set up email notification to project owner
-- [x] Store contact submissions in database
+### Trust Indicators & Professional Polish
+- [ ] Add client logos or testimonials
+- [ ] Include certification badges (SOC 2, ISO, etc.)
+- [ ] Add "Trusted by" section if applicable
+- [ ] Ensure professional imagery throughout
 
-## Authentication & Authorization
-- [x] Configure Manus OAuth integration
-- [x] Set up protected routes for admin dashboard
-- [x] Set up public routes for marketing pages
-- [x] Implement role-based access control
-
-## Testing & Deployment
-- [x] Write vitest tests for tRPC procedures
-- [x] Test all CRUD operations
-- [x] Test contact form submission
-- [x] Test authentication flow
-- [ ] Create deployment checkpoint
+### Testing & Quality
+- [ ] Test all navigation flows
+- [ ] Verify mobile responsiveness
+- [ ] Check all forms work properly
+- [ ] Ensure no broken links
+- [ ] Test live dashboard functionality

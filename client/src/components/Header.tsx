@@ -16,11 +16,15 @@ const Header: React.FC<HeaderProps> = ({ setPage, currentPage, setTargetServiceI
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const caseStudiesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Removed 'Blog' from top level
-  const navItems = ['Home', 'Services', 'CaseStudies', 'Pricing', 'About', 'Contact'];
+  // Navigation items including Live Dashboard
+  const navItems = ['Home', 'Services', 'CaseStudies', 'Pricing', 'LiveDashboard', 'About', 'Contact'];
 
-  // Helper to display "Case Studies" nicely in UI but use correct page key
-  const getLabel = (item: string) => item === 'CaseStudies' ? 'Case Studies' : item;
+  // Helper to display names nicely in UI but use correct page key
+  const getLabel = (item: string) => {
+    if (item === 'CaseStudies') return 'Case Studies';
+    if (item === 'LiveDashboard') return 'Live Dashboard';
+    return item;
+  };
 
   const handleNav = (page: string) => {
     setPage(page);

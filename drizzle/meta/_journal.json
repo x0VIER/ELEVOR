@@ -15,6 +15,20 @@
       "when": 1765611745479,
       "tag": "0001_skinny_micromacro",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1765615155564,
+      "tag": "0002_kind_colossus",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1765617313012,
+      "tag": "0003_jittery_namorita",
+      "breakpoints": true
     }
   ]
 }
