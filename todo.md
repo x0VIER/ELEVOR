@@ -1,43 +1,41 @@
-# ELEVOR V7 Enhancement TODO
+# ELEVOR V7 High-Converting Homepage TODO
 
-## Completed - Original Migration
-- [x] Database schema for content management
-- [x] Live dashboard backend with real-time simulation
-- [x] All frontend components migrated
-- [x] tRPC API endpoints
-- [x] Contact form with email notifications
-- [x] Admin dashboard
+## Hero Section Improvements
+- [x] Remove robot image
+- [x] Add professional workflow/automation visual
+- [x] Implement rotating headline ("Who we service" cycling through industries)
+- [x] Update hero copy to "Built for Reliability. Designed for Scale." style
+- [x] Add ReactFlow animated node diagram in hero
 
-## Current Enhancements
+## Trust & Credibility Elements
+- [x] Add SOC 2 Type II certification badge
+- [x] Add ISO 27001 certification badge
+- [x] Add CMMI Level 3 certification badge
+- [x] Create animated tech stack logo marquee (OpenAI, Anthropic, Llama 3, Pinecone, LangChain, Python, React, AWS)
+- [x] Add client logo marquee with real company logos
+- [ ] Improve trust indicator positioning and styling
 
-### Navigation & Live Dashboard
-- [x] Add "Live Dashboard" link to main navigation
-- [x] Ensure Live Dashboard page is accessible
-- [x] Test dashboard real-time updates
+## ReactFlow Node Animations
+- [x] Create interactive workflow visualization component
+- [x] Add node animations to hero section
+- [x] Add workflow diagrams to service sections
+- [ ] Ensure animations are smooth and professional
 
-### Button Functionality
-- [x] Verify all CTA buttons lead to Contact/Schedule
-- [x] Check all "Learn More" buttons navigate correctly
-- [x] Ensure service cards link properly
-- [x] Test case study navigation
-- [x] Verify pricing buttons work
-- [ ] Add working social media links in footer
+## Dashboard Enhancements
+- [x] Add more trust indicators to Live Dashboard
+- [x] Add conversion-focused metrics
+- [ ] Improve dashboard copy for credibility
+- [ ] Add social proof elements
 
-### Spacing & Layout Improvements
-- [ ] Review and fix any awkward spacing gaps
-- [ ] Ensure consistent padding/margins
-- [ ] Improve mobile responsiveness
-- [ ] Clean up any crowded sections
+## Copy & Messaging
+- [x] Rewrite hero headline for maximum impact
+- [x] Improve subheadline copy
+- [ ] Update CTA button text
+- [ ] Enhance value proposition messaging
+- [x] Add industry-specific rotating text
 
-### Trust Indicators & Professional Polish
-- [ ] Add client logos or testimonials
-- [ ] Include certification badges (SOC 2, ISO, etc.)
-- [ ] Add "Trusted by" section if applicable
-- [ ] Ensure professional imagery throughout
-
-### Testing & Quality
-- [ ] Test all navigation flows
-- [ ] Verify mobile responsiveness
-- [ ] Check all forms work properly
-- [ ] Ensure no broken links
-- [ ] Test live dashboard functionality
+## Visual Improvements
+- [ ] Replace all placeholder images with professional visuals
+- [ ] Ensure consistent branding throughout
+- [ ] Optimize image loading and performance
+- [ ] Add smooth animations and transitions

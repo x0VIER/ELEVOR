@@ -86,6 +86,46 @@ const LiveDashboard: React.FC = () => {
           </div>
         </div>
 
+        {/* Trust & Credibility Banner */}
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
+            <div className="p-2 bg-blue-50 rounded-lg">
+              <CheckCircle2 className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-gray-900">SOC 2 TYPE II</div>
+              <div className="text-xs text-gray-600">Certified</div>
+            </div>
+          </div>
+          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
+            <div className="p-2 bg-blue-50 rounded-lg">
+              <CheckCircle2 className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-gray-900">ISO 27001</div>
+              <div className="text-xs text-gray-600">Certified</div>
+            </div>
+          </div>
+          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
+            <div className="p-2 bg-blue-50 rounded-lg">
+              <CheckCircle2 className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-gray-900">99.97% Uptime</div>
+              <div className="text-xs text-gray-600">Last 12 months</div>
+            </div>
+          </div>
+          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
+            <div className="p-2 bg-green-50 rounded-lg">
+              <TrendingUp className="w-5 h-5 text-green-600" />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-gray-900">340% Avg ROI</div>
+              <div className="text-xs text-gray-600">First year</div>
+            </div>
+          </div>
+        </div>
+
         {/* Privacy Notice */}
         <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <div className="flex items-start gap-3">

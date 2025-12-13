@@ -1,0 +1,27 @@
+{
+  "image_concept": "Professional AI and human collaboration for enterprise automation",
+  "style": "Photorealistic stock photography with professional studio lighting",
+  "composition": {
+    "layout": "Clean, centered composition with negative space",
+    "orientation": "Landscape (16:9 aspect ratio)",
+    "focal_point": "Robot hand and human hand interaction symbolizing AI-human collaboration"
+  },
+  "visual_elements": {
+    "primary_subject": "Sleek, modern robotic hand with metallic silver/white finish and blue LED accents reaching toward or touching a human hand",
+    "background": "Pure white or very light gray gradient background, completely clean with no distractions",
+    "lighting": "Professional studio lighting with soft shadows, bright and clean aesthetic",
+    "color_palette": ["#FFFFFF (white)", "#2563EB (blue accents)", "#E5E7EB (light gray)", "#6B7280 (metallic gray)"],
+    "additional_elements": "Subtle blue holographic interface elements or data visualization floating near the interaction point"
+  },
+  "technical_requirements": {
+    "resolution": "High resolution, print quality",
+    "background_treatment": "Clean white background with subtle gradient, no texture",
+    "edge_treatment": "Clean edges, no vignetting, professional crop",
+    "aspect_ratio": "Square (1:1) for versatility"
+  },
+  "mood_and_tone": {
+    "feeling": "Trust, innovation, partnership, enterprise-grade professionalism",
+    "avoid": "Sci-fi dystopian, aggressive, overly futuristic, cluttered backgrounds"
+  },
+  "reference_style": "Adobe Stock professional business photography, similar to enterprise SaaS marketing imagery"
+}
