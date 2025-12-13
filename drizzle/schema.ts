@@ -18,8 +18,11 @@ export const users = mysqlTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
+// Dashboard metrics tables
+export * from './schema-dashboard';
+
 /**
- * Services table for service offerings
+ * Services table - stores AI agent service offerings
  */
 export const services = mysqlTable("services", {
   id: int("id").autoincrement().primaryKey(),
