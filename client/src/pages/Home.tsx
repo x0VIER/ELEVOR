@@ -110,6 +110,82 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                  <CertificationBadges />
             </div>
 
+            {/* Right Content - Stats & Social Proof */}
+            <div className="relative">
+              {/* Main Stats Card */}
+              <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-200">
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Trusted by Industry Leaders</h3>
+                  <p className="text-gray-600">Real-time performance metrics</p>
+                </div>
+                
+                {/* Live Stats Grid */}
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  <div className="text-center p-4 bg-blue-50 rounded-xl">
+                    <div className="text-4xl font-bold text-blue-600 mb-1">247</div>
+                    <div className="text-sm text-gray-600 font-medium">Active AI Agents</div>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-xl">
+                    <div className="text-4xl font-bold text-blue-600 mb-1">21.5K</div>
+                    <div className="text-sm text-gray-600 font-medium">Tasks Completed</div>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-xl">
+                    <div className="text-4xl font-bold text-blue-600 mb-1">$2.8M</div>
+                    <div className="text-sm text-gray-600 font-medium">Monthly Revenue</div>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-xl">
+                    <div className="text-4xl font-bold text-blue-600 mb-1">99.9%</div>
+                    <div className="text-sm text-gray-600 font-medium">Uptime SLA</div>
+                  </div>
+                </div>
+
+                {/* Key Benefits List */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-green-100 rounded-full">
+                      <Check className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">Deploy in 48 Hours</div>
+                      <div className="text-sm text-gray-600">From consultation to production</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-green-100 rounded-full">
+                      <Check className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">87% Cost Reduction</div>
+                      <div className="text-sm text-gray-600">Average savings across clients</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-green-100 rounded-full">
+                      <Check className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">24/7 Monitoring</div>
+                      <div className="text-sm text-gray-600">Real-time alerts and support</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 p-1 bg-green-100 rounded-full">
+                      <Check className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900">Enterprise Security</div>
+                      <div className="text-sm text-gray-600">SOC 2 & ISO 27001 certified</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Badge - Live Status */}
+              <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 animate-pulse">
+                <div className="w-2 h-2 bg-white rounded-full"></div>
+                <span className="font-semibold text-sm">Live Now</span>
+              </div>
+            </div>
 
           </div>
         </div>
