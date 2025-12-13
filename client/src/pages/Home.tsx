@@ -5,6 +5,7 @@ import RotatingText from '../components/RotatingText';
 import LogoMarquee from '../components/LogoMarquee';
 import CertificationBadges from '../components/CertificationBadges';
 import AnimatedWorkflow from '../components/AnimatedWorkflow';
+import HeroFlowAnimation from '../components/HeroFlowAnimation';
 
 const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category: string) => void }> = ({ setPage, setCategory }) => {
   
@@ -109,16 +110,9 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                  <CertificationBadges />
             </div>
 
-            {/* Right Content - Hero Visual */}
+            {/* Right Content - Animated Workflow */}
             <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden">
-                <img 
-                  src="/hero-professional.png" 
-                  alt="AI and Human Collaboration" 
-                  className="w-full h-auto drop-shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
-              </div>
+              <HeroFlowAnimation />
             </div>
           </div>
         </div>
