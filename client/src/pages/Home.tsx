@@ -87,7 +87,7 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                  <div className="inline-block mb-6 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-semibold">
                     OUR STORY & VISION
                  </div>
-                 <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
                     Built for <span className="text-blue-600"><RotatingText texts={rotatingTexts} interval={2500} /></span>.<br/>
                     Designed for <span className="text-blue-600">Scale</span>.
                  </h1>
@@ -133,25 +133,25 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                   </div>
                   
                   {/* Main Stats Grid */}
-                  <div className="grid grid-cols-2 gap-3 mb-6">
+                   <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 mb-6">
                     <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-l-2xl"></div>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">247</div>
+                       <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">247</div>
                       <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Total Agents</div>
                     </div>
                     <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 to-blue-600 rounded-l-2xl"></div>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">21.5K</div>
+                       <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-1">21.5K</div>
                       <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Tasks Today</div>
                     </div>
                     <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-green-500 to-green-600 rounded-l-2xl"></div>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">$2.8M</div>
+                       <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">$2.8M</div>
                       <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Monthly Value</div>
                     </div>
                     <div className="group relative bg-white rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-100">
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-green-500 to-green-600 rounded-l-2xl"></div>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">99.9%</div>
+                       <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent mb-1">99.9%</div>
                       <div className="text-xs text-gray-600 font-medium uppercase tracking-wide">Uptime SLA</div>
                     </div>
                   </div>
@@ -195,17 +195,17 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                   </div>
 
                   {/* Social Proof Stats */}
-                  <div className="grid grid-cols-3 gap-3 mb-6">
+                   <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 mb-6">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">340%</div>
+                       <div className="text-xl sm:text-2xl font-bold text-gray-900">340%</div>
                       <div className="text-xs text-gray-600">Avg ROI</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">48hr</div>
+                       <div className="text-xl sm:text-2xl font-bold text-gray-900">48hr</div>
                       <div className="text-xs text-gray-600">Deploy Time</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">87%</div>
+                       <div className="text-xl sm:text-2xl font-bold text-gray-900">87%</div>
                       <div className="text-xs text-gray-600">Cost Saved</div>
                     </div>
                   </div>
@@ -329,7 +329,7 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
             {INDUSTRIES.map((industry, index) => {
               const Icon = industry.icon;
               return (
@@ -354,7 +354,7 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                 Featured Work
               </h2>
               <p className="text-xl text-gray-600">
@@ -403,7 +403,7 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
       {/* CTA Section */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Scale with AI?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
