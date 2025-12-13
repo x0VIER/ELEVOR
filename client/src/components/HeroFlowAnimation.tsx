@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ReactFlow,
   Node,
@@ -10,131 +10,105 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
+// Clean linear workflow: Customer Request → AI Agent → Processing → Delivery
 const initialNodes: Node[] = [
   {
-    id: 'input',
-    type: 'default',
-    data: { label: '📊 Data' },
-    position: { x: 20, y: 180 },
+    id: 'customer',
+    type: 'input',
+    data: { label: '👤 Customer Request' },
+    position: { x: 50, y: 150 },
     style: { 
       background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)', 
       color: 'white',
       border: 'none',
       borderRadius: '12px', 
-      padding: '16px 20px', 
-      fontSize: '14px',
+      padding: '18px 24px', 
+      fontSize: '15px',
       fontWeight: '600',
-      boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+      boxShadow: '0 4px 16px rgba(59, 130, 246, 0.4)',
     },
   },
   {
-    id: 'lead',
+    id: 'agent',
     type: 'default',
-    data: { label: '🎯 Leads' },
-    position: { x: 200, y: 30 },
+    data: { label: '🤖 AI Agent' },
+    position: { x: 280, y: 150 },
     style: { 
       background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', 
       color: 'white',
       border: 'none',
       borderRadius: '12px', 
-      padding: '16px 20px', 
-      fontSize: '14px',
+      padding: '18px 24px', 
+      fontSize: '15px',
       fontWeight: '600',
-      boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
+      boxShadow: '0 4px 16px rgba(16, 185, 129, 0.4)',
     },
   },
   {
-    id: 'support',
+    id: 'processing',
     type: 'default',
-    data: { label: '💬 Support' },
-    position: { x: 200, y: 120 },
+    data: { label: '⚙️ Processing' },
+    position: { x: 480, y: 150 },
     style: { 
       background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)', 
       color: 'white',
       border: 'none',
       borderRadius: '12px', 
-      padding: '16px 20px', 
-      fontSize: '14px',
+      padding: '18px 24px', 
+      fontSize: '15px',
       fontWeight: '600',
-      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+      boxShadow: '0 4px 16px rgba(139, 92, 246, 0.4)',
     },
   },
   {
-    id: 'data',
-    type: 'default',
-    data: { label: '📈 Analytics' },
-    position: { x: 200, y: 210 },
-    style: { 
-      background: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)', 
-      color: 'white',
-      border: 'none',
-      borderRadius: '12px', 
-      padding: '16px 20px', 
-      fontSize: '14px',
-      fontWeight: '600',
-      boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)',
-    },
-  },
-  {
-    id: 'content',
-    type: 'default',
-    data: { label: '✍️ Content' },
-    position: { x: 200, y: 300 },
-    style: { 
-      background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', 
-      color: 'white',
-      border: 'none',
-      borderRadius: '12px', 
-      padding: '16px 20px', 
-      fontSize: '14px',
-      fontWeight: '600',
-      boxShadow: '0 4px 12px rgba(236, 72, 153, 0.3)',
-    },
-  },
-  {
-    id: 'ai',
-    type: 'default',
-    data: { label: '🤖 AI Engine' },
-    position: { x: 420, y: 165 },
-    style: { 
-      background: 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)', 
-      color: 'white',
-      border: 'none',
-      borderRadius: '12px', 
-      padding: '16px 20px', 
-      fontSize: '14px',
-      fontWeight: '600',
-      boxShadow: '0 4px 12px rgba(6, 182, 212, 0.3)',
-    },
-  },
-  {
-    id: 'output',
-    type: 'default',
-    data: { label: '✅ Results' },
-    position: { x: 620, y: 165 },
+    id: 'delivery',
+    type: 'output',
+    data: { label: '✅ Delivered' },
+    position: { x: 680, y: 150 },
     style: { 
       background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)', 
       color: 'white',
       border: 'none',
       borderRadius: '12px', 
-      padding: '16px 20px', 
-      fontSize: '14px',
+      padding: '18px 24px', 
+      fontSize: '15px',
       fontWeight: '600',
-      boxShadow: '0 4px 12px rgba(20, 184, 166, 0.3)',
+      boxShadow: '0 4px 16px rgba(20, 184, 166, 0.4)',
     },
   },
 ];
 
 const initialEdges: Edge[] = [
-  { id: 'e-input-lead', source: 'input', target: 'lead', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
-  { id: 'e-input-support', source: 'input', target: 'support', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
-  { id: 'e-input-data', source: 'input', target: 'data', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
-  { id: 'e-input-content', source: 'input', target: 'content', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
-  { id: 'e-lead-ai', source: 'lead', target: 'ai', animated: true, style: { stroke: '#10B981', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#10B981' } },
-  { id: 'e-support-ai', source: 'support', target: 'ai', animated: true, style: { stroke: '#8B5CF6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#8B5CF6' } },
-  { id: 'e-data-ai', source: 'data', target: 'ai', animated: true, style: { stroke: '#F59E0B', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#F59E0B' } },
-  { id: 'e-content-ai', source: 'content', target: 'ai', animated: true, style: { stroke: '#EC4899', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#EC4899' } },
-  { id: 'e-ai-output', source: 'ai', target: 'output', animated: true, style: { stroke: '#06B6D4', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#06B6D4' } },
+  { 
+    id: 'e1', 
+    source: 'customer', 
+    target: 'agent', 
+    animated: true, 
+    style: { stroke: '#3B82F6', strokeWidth: 3 }, 
+    markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' },
+    label: 'Submit',
+    labelStyle: { fill: '#6B7280', fontWeight: 600, fontSize: 12 },
+  },
+  { 
+    id: 'e2', 
+    source: 'agent', 
+    target: 'processing', 
+    animated: true, 
+    style: { stroke: '#10B981', strokeWidth: 3 }, 
+    markerEnd: { type: MarkerType.ArrowClosed, color: '#10B981' },
+    label: 'Analyze',
+    labelStyle: { fill: '#6B7280', fontWeight: 600, fontSize: 12 },
+  },
+  { 
+    id: 'e3', 
+    source: 'processing', 
+    target: 'delivery', 
+    animated: true, 
+    style: { stroke: '#8B5CF6', strokeWidth: 3 }, 
+    markerEnd: { type: MarkerType.ArrowClosed, color: '#8B5CF6' },
+    label: 'Complete',
+    labelStyle: { fill: '#6B7280', fontWeight: 600, fontSize: 12 },
+  },
 ];
 
 export default function HeroFlowAnimation() {
@@ -146,7 +120,7 @@ export default function HeroFlowAnimation() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveNode((prev) => (prev + 1) % nodes.length);
-    }, 1200);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, [nodes.length]);
@@ -158,8 +132,8 @@ export default function HeroFlowAnimation() {
         ...node,
         style: {
           ...node.style,
-          transform: index === activeNode ? 'scale(1.15)' : 'scale(1)',
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          transform: index === activeNode ? 'scale(1.1)' : 'scale(1)',
+          transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
           filter: index === activeNode ? 'brightness(1.2)' : 'brightness(1)',
         },
       }))
@@ -167,14 +141,14 @@ export default function HeroFlowAnimation() {
   }, [activeNode, setNodes]);
 
   return (
-    <div className="w-full h-[450px] relative">
+    <div className="w-full h-[400px] relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         fitView
-        fitViewOptions={{ padding: 0.15, maxZoom: 0.95, minZoom: 0.95 }}
+        fitViewOptions={{ padding: 0.2, maxZoom: 1.1, minZoom: 1.1 }}
         proOptions={{ hideAttribution: true }}
         nodesDraggable={false}
         nodesConnectable={false}
@@ -188,7 +162,7 @@ export default function HeroFlowAnimation() {
           color="#E0E7FF" 
           gap={20} 
           size={1}
-          style={{ opacity: 0.3 }}
+          style={{ opacity: 0.25 }}
         />
       </ReactFlow>
     </div>
