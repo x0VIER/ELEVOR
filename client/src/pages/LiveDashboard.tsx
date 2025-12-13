@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Users, Phone, TrendingUp, CheckCircle2, Clock } from 'lucide-react';
+import { Users, Phone, TrendingUp, CheckCircle2, Clock, Zap, Activity } from 'lucide-react';
+import HeroFlowAnimation from '../components/HeroFlowAnimation';
 
-interface Activity {
+interface ActivityEvent {
   id: number;
-  type: 'lead' | 'call' | 'security';
+  type: 'lead' | 'call';
   title: string;
   description: string;
   timestamp: string;
-  icon: 'users' | 'phone' | 'alert';
 }
 
 const LiveDashboard: React.FC = () => {
@@ -27,69 +27,79 @@ const LiveDashboard: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Generate realistic activity feed
-  const [activities, setActivities] = useState<Activity[]>([
+  // Activity feed data
+  const [activities] = useState<ActivityEvent[]>([
     {
       id: 1,
-      type: 'lead',
-      title: 'Lead Captured',
-      description: 'Inbound inquiry from paid search',
-      timestamp: 'Just now',
-      icon: 'users'
+      type: 'call',
+      title: 'Outbound Call Connected',
+      description: 'Qualification call scheduled',
+      timestamp: 'Just now'
     },
     {
       id: 2,
-      type: 'call',
-      title: 'Outbound Call Connected',
-      description: 'Qualification call scheduled',
-      timestamp: '1 min ago',
-      icon: 'phone'
+      type: 'lead',
+      title: 'Lead Captured',
+      description: 'Inbound inquiry from paid search',
+      timestamp: '1 min ago'
     },
     {
       id: 3,
-      type: 'lead',
-      title: 'Lead Captured',
-      description: 'Inbound inquiry from paid search',
-      timestamp: '2 min ago',
-      icon: 'users'
+      type: 'call',
+      title: 'Outbound Call Connected',
+      description: 'Qualification call scheduled',
+      timestamp: '2 min ago'
     },
     {
       id: 4,
-      type: 'call',
-      title: 'Outbound Call Connected',
-      description: 'Qualification call scheduled',
-      timestamp: '3 min ago',
-      icon: 'phone'
-    },
-    {
-      id: 5,
       type: 'lead',
       title: 'Lead Captured',
       description: 'Inbound inquiry from paid search',
-      timestamp: '5 min ago',
-      icon: 'users'
+      timestamp: '3 min ago'
     },
     {
-      id: 6,
+      id: 5,
       type: 'call',
       title: 'Outbound Call Connected',
       description: 'Qualification call scheduled',
-      timestamp: '7 min ago',
-      icon: 'phone'
+      timestamp: '5 min ago'
+    },
+    {
+      id: 6,
+      type: 'lead',
+      title: 'Lead Captured',
+      description: 'Inbound inquiry from paid search',
+      timestamp: '7 min ago'
     },
   ]);
 
   // Revenue data for chart
   const revenueData = [
-    { week: 'Week 1', value: 300000 },
-    { week: 'Week 2', value: 310000 },
-    { week: 'Week 3', value: 560000 },
-    { week: 'Week 4', value: 570000 },
-    { week: 'Week 5', value: 580000 },
+    { week: 'Week 1', value: 300000, x: 0 },
+    { week: 'Week 2', value: 310000, x: 1 },
+    { week: 'Week 3', value: 560000, x: 2 },
+    { week: 'Week 4', value: 570000, x: 3 },
+    { week: 'Week 5', value: 580000, x: 4 },
   ];
 
   const maxRevenue = 600000;
   const minRevenue = 250000;
+  const chartWidth = 600;
+  const chartHeight = 300;
+
+  // Calculate SVG path for the line
+  const linePath = revenueData.map((d, i) => {
+    const x = (i / (revenueData.length - 1)) * chartWidth;
+    const y = chartHeight - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * chartHeight;
+    return `${i === 0 ? 'M' : 'L'} ${x},${y}`;
+  }).join(' ');
+
+  // Calculate area path
+  const areaPath = `M 0,${chartHeight} ${revenueData.map((d, i) => {
+    const x = (i / (revenueData.length - 1)) * chartWidth;
+    const y = chartHeight - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * chartHeight;
+    return `L ${x},${y}`;
+  }).join(' ')} L ${chartWidth},${chartHeight} Z`;
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -101,36 +111,38 @@ const LiveDashboard: React.FC = () => {
         </div>
 
         {/* System Status Bar */}
-        <div className="bg-white rounded-2xl p-6 mb-8 border border-gray-200 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="bg-white rounded-xl p-6 mb-8 border border-gray-200 shadow-sm">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="text-sm font-semibold text-gray-900">Neural Network:</span>
-              <span className="text-sm font-bold text-green-600">ONLINE</span>
+              <span className="text-sm font-semibold text-gray-700">Neural Network:</span>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm font-bold text-green-600">ONLINE</span>
+              </div>
             </div>
-            <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
+            <div className="text-gray-300">•</div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-gray-900">{activeAgents}</span>
+              <span className="text-sm font-bold text-gray-900">{activeAgents}</span>
               <span className="text-sm text-gray-600">Active AI Agents</span>
             </div>
-            <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
+            <div className="text-gray-300">•</div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-gray-900">Last sync:</span>
-              <span className="text-sm text-gray-600">Just now</span>
+              <span className="text-sm font-semibold text-gray-700">Last sync:</span>
+              <span className="text-sm text-gray-900">Just now</span>
             </div>
-            <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
+            <div className="text-gray-300">•</div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-gray-900">Uptime:</span>
-              <span className="text-sm text-green-600 font-semibold">99.97%</span>
+              <span className="text-sm font-semibold text-gray-700">Uptime:</span>
+              <span className="text-sm font-bold text-green-600">99.97%</span>
             </div>
           </div>
         </div>
 
-        {/* Main Grid */}
+        {/* Main Grid - Revenue Chart and Activity Stream */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Revenue Velocity Chart */}
-          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-start justify-between mb-6">
               <h2 className="text-2xl font-bold text-gray-900">Revenue Velocity</h2>
               <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-lg">
                 <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -138,67 +150,10 @@ const LiveDashboard: React.FC = () => {
               </div>
             </div>
             
-            {/* Chart */}
-            <div className="relative h-64 mb-4">
-              <svg className="w-full h-full" viewBox="0 0 600 250" preserveAspectRatio="none">
-                {/* Grid lines */}
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <line
-                    key={i}
-                    x1="0"
-                    y1={i * 50}
-                    x2="600"
-                    y2={i * 50}
-                    stroke="#e5e7eb"
-                    strokeWidth="1"
-                  />
-                ))}
-                
-                {/* Revenue line */}
-                <polyline
-                  points={revenueData.map((d, i) => {
-                    const x = (i / (revenueData.length - 1)) * 600;
-                    const y = 250 - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * 250;
-                    return `${x},${y}`;
-                  }).join(' ')}
-                  fill="none"
-                  stroke="#6366f1"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                
-                {/* Area fill */}
-                <polygon
-                  points={`0,250 ${revenueData.map((d, i) => {
-                    const x = (i / (revenueData.length - 1)) * 600;
-                    const y = 250 - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * 250;
-                    return `${x},${y}`;
-                  }).join(' ')} 600,250`}
-                  fill="#6366f1"
-                  fillOpacity="0.1"
-                />
-                
-                {/* Data points */}
-                {revenueData.map((d, i) => {
-                  const x = (i / (revenueData.length - 1)) * 600;
-                  const y = 250 - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * 250;
-                  return (
-                    <circle
-                      key={i}
-                      cx={x}
-                      cy={y}
-                      r="4"
-                      fill="#6366f1"
-                      stroke="white"
-                      strokeWidth="2"
-                    />
-                  );
-                })}
-              </svg>
-              
+            {/* Chart Container */}
+            <div className="relative mb-6" style={{ height: '320px' }}>
               {/* Y-axis labels */}
-              <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 -ml-16">
+              <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-xs text-gray-500 pr-3">
                 <span>$600,000</span>
                 <span>$550,000</span>
                 <span>$500,000</span>
@@ -208,32 +163,87 @@ const LiveDashboard: React.FC = () => {
                 <span>$300,000</span>
                 <span>$250,000</span>
               </div>
-            </div>
-            
-            {/* X-axis labels */}
-            <div className="flex justify-between text-sm text-gray-600 mb-4">
-              {revenueData.map((d, i) => (
-                <span key={i}>{d.week}</span>
-              ))}
+              
+              {/* Chart SVG */}
+              <div className="ml-16 h-full">
+                <svg className="w-full" style={{ height: '300px' }} viewBox={`0 0 ${chartWidth} ${chartHeight}`} preserveAspectRatio="none">
+                  {/* Grid lines */}
+                  {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                    <line
+                      key={i}
+                      x1="0"
+                      y1={(i / 7) * chartHeight}
+                      x2={chartWidth}
+                      y2={(i / 7) * chartHeight}
+                      stroke="#e5e7eb"
+                      strokeWidth="1"
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  ))}
+                  
+                  {/* Area fill */}
+                  <path
+                    d={areaPath}
+                    fill="#6366f1"
+                    fillOpacity="0.1"
+                  />
+                  
+                  {/* Line */}
+                  <path
+                    d={linePath}
+                    fill="none"
+                    stroke="#6366f1"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                  
+                  {/* Data points */}
+                  {revenueData.map((d, i) => {
+                    const x = (i / (revenueData.length - 1)) * chartWidth;
+                    const y = chartHeight - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * chartHeight;
+                    return (
+                      <circle
+                        key={i}
+                        cx={x}
+                        cy={y}
+                        r="5"
+                        fill="#6366f1"
+                        stroke="white"
+                        strokeWidth="2"
+                        vectorEffect="non-scaling-stroke"
+                      />
+                    );
+                  })}
+                </svg>
+                
+                {/* X-axis labels */}
+                <div className="flex justify-between mt-2 text-sm text-gray-600">
+                  {revenueData.map((d, i) => (
+                    <span key={i}>{d.week}</span>
+                  ))}
+                </div>
+              </div>
             </div>
             
             <p className="text-sm text-gray-500">Processing 0.3s/action</p>
           </div>
 
           {/* Neural Activity Stream */}
-          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Neural Activity Stream</h2>
             
-            <div className="space-y-4 max-h-96 overflow-y-auto">
+            <div className="space-y-3 max-h-96 overflow-y-auto">
               {activities.map((activity) => (
                 <div
                   key={activity.id}
-                  className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-blue-200 transition-colors"
+                  className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-all"
                 >
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                    activity.icon === 'users' ? 'bg-blue-500' : 'bg-blue-600'
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${
+                    activity.type === 'lead' ? 'bg-blue-500' : 'bg-blue-600'
                   }`}>
-                    {activity.icon === 'users' ? (
+                    {activity.type === 'lead' ? (
                       <Users className="w-6 h-6 text-white" />
                     ) : (
                       <Phone className="w-6 h-6 text-white" />
@@ -250,41 +260,60 @@ const LiveDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Agent Deployment Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-50 rounded-xl">
-                <TrendingUp className="w-6 h-6 text-blue-600" />
-              </div>
-              <span className="text-2xl font-bold text-gray-900">340%</span>
-            </div>
-            <h3 className="text-sm font-semibold text-gray-600">Average ROI</h3>
-          </div>
-
-          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-green-50 rounded-xl">
-                <Clock className="w-6 h-6 text-green-600" />
-              </div>
-              <span className="text-2xl font-bold text-gray-900">48hr</span>
-            </div>
-            <h3 className="text-sm font-semibold text-gray-600">Deploy Time</h3>
-          </div>
-
-          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-purple-50 rounded-xl">
-                <CheckCircle2 className="w-6 h-6 text-purple-600" />
-              </div>
-              <span className="text-2xl font-bold text-gray-900">87%</span>
-            </div>
-            <h3 className="text-sm font-semibold text-gray-600">Cost Saved</h3>
+        {/* Workflow Visualization */}
+        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">ELEVOR Neural Engine</h2>
+          <p className="text-gray-600 mb-6">Real-time AI automation network • Processing 8,299+ actions today</p>
+          <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+            <HeroFlowAnimation />
           </div>
         </div>
 
-        {/* Live Updates Notice */}
-        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+        {/* Additional Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2.5 bg-blue-50 rounded-lg">
+                <Activity className="w-5 h-5 text-blue-600" />
+              </div>
+              <span className="text-sm font-semibold text-gray-600">AI Agents Active</span>
+            </div>
+            <p className="text-3xl font-bold text-gray-900">{activeAgents}</p>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2.5 bg-purple-50 rounded-lg">
+                <Zap className="w-5 h-5 text-purple-600" />
+              </div>
+              <span className="text-sm font-semibold text-gray-600">Workflows Running</span>
+            </div>
+            <p className="text-3xl font-bold text-gray-900">12</p>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2.5 bg-green-50 rounded-lg">
+                <Clock className="w-5 h-5 text-green-600" />
+              </div>
+              <span className="text-sm font-semibold text-gray-600">Avg Response Time</span>
+            </div>
+            <p className="text-3xl font-bold text-gray-900">2.0s</p>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2.5 bg-orange-50 rounded-lg">
+                <TrendingUp className="w-5 h-5 text-orange-600" />
+              </div>
+              <span className="text-sm font-semibold text-gray-600">Data Sync</span>
+            </div>
+            <p className="text-3xl font-bold text-green-600">Healthy</p>
+          </div>
+        </div>
+
+        {/* Live Data Notice */}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
           <div className="flex items-start gap-3">
             <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse mt-2"></div>
             <div>

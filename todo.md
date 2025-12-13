@@ -47,3 +47,12 @@
 - [x] Implement clean card-based layout
 - [x] Test all dashboard features
 - [x] Save checkpoint after completion
+
+## Dashboard Improvements (Copy from Reference Site)
+- [x] Visit https://elevorstore-ttyqpatd.manus.space and analyze Neural Live Engine section
+- [x] Copy design structure from reference site
+- [x] Improve graph quality with better rendering
+- [x] Add workflow visualization back to dashboard
+- [x] Match current website color scheme (ELEVOR blue)
+- [x] Test all improvements
+- [x] Save checkpoint after completion
