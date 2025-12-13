@@ -5,7 +5,7 @@ import RotatingText from '../components/RotatingText';
 import LogoMarquee from '../components/LogoMarquee';
 import CertificationBadges from '../components/CertificationBadges';
 import AnimatedWorkflow from '../components/AnimatedWorkflow';
-import HeroFlowAnimation from '../components/HeroFlowAnimation';
+
 
 const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category: string) => void }> = ({ setPage, setCategory }) => {
   
@@ -110,10 +110,7 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                  <CertificationBadges />
             </div>
 
-            {/* Right Content - Animated Workflow */}
-            <div className="relative">
-              <HeroFlowAnimation />
-            </div>
+
           </div>
         </div>
       </section>

@@ -1,10 +1,7 @@
-# ELEVOR V7 Detailed Workflow Visualization
+# ELEVOR V7 Workflow Relocation
 
-## Enhanced Workflow Cards
-- [x] Create detailed step-by-step cards with descriptions
-- [x] Show exactly what happens at each stage
-- [x] Fit entire workflow in one view (no scrolling needed)
-- [x] Add bouncy, lively animations to nodes
-- [x] Add data flow animations between steps
-- [x] Verify all steps are visible in viewport
-- [x] Test animations and interactivity
+## Move Workflow to Live Dashboard
+- [x] Remove HeroFlowAnimation from homepage
+- [x] Add workflow to Live Dashboard in full-width rectangle layout
+- [x] Ensure all workflow details are visible
+- [x] Test Live Dashboard layout

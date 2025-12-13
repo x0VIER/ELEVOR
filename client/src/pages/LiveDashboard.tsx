@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Activity, TrendingUp, Zap, Users, DollarSign, CheckCircle2, Clock, AlertCircle, Bot, BarChart3, Database, MessageSquare } from 'lucide-react';
+import HeroFlowAnimation from '../components/HeroFlowAnimation';
 
 const LiveDashboard: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -199,6 +200,15 @@ const LiveDashboard: React.FC = () => {
             <h3 className="text-sm font-medium text-gray-600 mb-1">Revenue This Month</h3>
             <p className="text-3xl font-bold text-gray-900">${(revenueThisMonth / 1000000).toFixed(2)}M</p>
             <p className="text-xs text-gray-500 mt-2">From all operations</p>
+          </div>
+        </div>
+
+        {/* Workflow Visualization */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Live Workflow Process</h2>
+          <p className="text-gray-600 mb-6">Real-time visualization of how AI agents process requests across your operations</p>
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl border-2 border-blue-100">
+            <HeroFlowAnimation />
           </div>
         </div>
 
