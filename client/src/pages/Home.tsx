@@ -36,9 +36,9 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
       category: "Real Estate",
       type: "Case Study",
       location: "Korea",
-      title: "Jikbang Scales with ELEVOR Autonomous Lead Acquisition",
-      teaser: "In the heart of Seoul, Jikbang leveraged our Autonomous Lead Acquisition Ecosystem to revolutionize their operations.",
-      icon: Database
+      title: "Zigbang Scales with ELEVOR Autonomous Lead Acquisition",
+      teaser: "In the heart of Seoul, Zigbang leveraged our Autonomous Lead Acquisition Ecosystem to revolutionize their operations.",
+      logo: "/logos/zigbang.jpg"
     },
     {
       id: 2,
@@ -47,16 +47,16 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
       location: "Korea",
       title: "LOTTE REIT Scales with ELEVOR Predictive Deal Analysis",
       teaser: "Eliminating emotional bias from investing with computer vision agents and 50+ market indicators.",
-      icon: BarChart3
+      logo: "/logos/lotte-reit.png"
     },
     {
       id: 3,
       category: "Real Estate",
       type: "Case Study",
       location: "Korea",
-      title: "ESR Kendall Square Scales with ELEVOR Asset Sentinel",
+      title: "ESR Scales with ELEVOR Asset Sentinel",
       teaser: "Creating a continuous monitoring loop to flag anomalies before they become liabilities.",
-      icon: Layers
+      logo: "/logos/esr.png"
     }
   ];
 
@@ -66,8 +66,8 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
   const rotatingTexts = ['Reliability', 'Scale', 'Performance', 'Security'];
 
   const techLogos = [
-    { name: 'OpenAI', icon: <Cpu className="w-5 h-5 text-blue-600" /> },
-    { name: 'Anthropic', icon: <BrainCircuit className="w-5 h-5 text-blue-600" /> },
+    { name: 'OpenAI', logo: '/logos/openai.png' },
+    { name: 'Anthropic', logo: '/logos/anthropic.jpg' },
     { name: 'Llama 3', icon: <Zap className="w-5 h-5 text-blue-600" /> },
     { name: 'Pinecone', icon: <Database className="w-5 h-5 text-blue-600" /> },
     { name: 'LangChain', icon: <Layers className="w-5 h-5 text-blue-600" /> },
@@ -97,14 +97,14 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                     We value transparency, security, and measurable outcomes. Serving <RotatingText texts={rotatingIndustries} interval={2000} className="text-blue-600 font-semibold" /> and beyond.
                  </p>
-                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
-                    <button onClick={() => setPage('Contact')} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all text-base">
-                       Start Building
-                    </button>
-                    <button onClick={() => setPage('CaseStudies')} className="text-gray-900 font-bold hover:text-blue-600 transition-colors flex items-center gap-2 group text-base px-6 py-4 border-2 border-gray-300 rounded-lg hover:border-blue-600">
-                       Explore Our Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
-                 </div>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
+                     <button onClick={() => setPage('Contact')} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-base">
+                        Start Building
+                     </button>
+                     <button onClick={() => setPage('CaseStudies')} className="text-gray-900 font-bold hover:text-blue-600 transition-all duration-300 flex items-center gap-2 group text-base px-6 py-4 border-2 border-gray-300 rounded-lg hover:border-blue-600 hover:shadow-md">
+                        Explore Our Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                     </button>
+                  </div>
                  
                  {/* Certification Badges */}
                  <CertificationBadges />
@@ -363,7 +363,7 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
             </div>
             <button
               onClick={() => setPage('CaseStudies')}
-              className="text-blue-600 font-bold hover:text-blue-700 flex items-center gap-2 group"
+              className="text-blue-600 font-bold hover:text-blue-700 flex items-center gap-2 group transition-all duration-300 hover:gap-3"
             >
               View All Case Studies
               <ChevronRight className="group-hover:translate-x-1 transition-transform" />
@@ -372,16 +372,15 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {WORK_ITEMS.map((item) => {
-              const Icon = item.icon;
               return (
                 <div
                   key={item.id}
                   onClick={() => setPage('CaseStudies')}
-                  className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-blue-500 hover:shadow-xl transition-all cursor-pointer group"
+                  className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-blue-500 hover:shadow-xl transition-all duration-300 cursor-pointer group"
                 >
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      <Icon className="w-6 h-6 text-blue-600" />
+                    <div className="h-12 w-12 bg-white rounded-lg border border-gray-200 flex items-center justify-center overflow-hidden p-2">
+                      <img src={item.logo} alt={item.title} className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <span className="text-sm font-semibold text-blue-600">{item.category}</span>
@@ -413,13 +412,13 @@ const Home: React.FC<{ setPage: (page: string) => void; setCategory?: (category:
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => setPage('Contact')}
-              className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all text-lg"
+              className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-lg"
             >
-              Schedule a Demo
+              Get Started Today
             </button>
             <button
               onClick={() => setPage('LiveDashboard')}
-              className="bg-blue-700 text-white hover:bg-blue-800 font-bold py-4 px-8 rounded-lg border-2 border-blue-400 transition-all text-lg"
+              className="bg-blue-700 text-white hover:bg-blue-800 font-bold py-4 px-8 rounded-lg border-2 border-blue-400 transition-all duration-300 hover:scale-105 text-lg"
             >
               View Live Dashboard
             </button>

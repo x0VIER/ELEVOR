@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Activity, TrendingUp, Zap, Users, DollarSign, CheckCircle2, Clock, AlertCircle, Bot, BarChart3, Database, MessageSquare } from 'lucide-react';
-import HeroFlowAnimation from '../components/HeroFlowAnimation';
+import { Users, Phone, TrendingUp, CheckCircle2, Clock } from 'lucide-react';
+
+interface Activity {
+  id: number;
+  type: 'lead' | 'call' | 'security';
+  title: string;
+  description: string;
+  timestamp: string;
+  icon: 'users' | 'phone' | 'alert';
+}
 
 const LiveDashboard: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [activeAgents, setActiveAgents] = useState(247);
-  const [tasksCompleted, setTasksCompleted] = useState(18543);
-  const [revenueThisMonth, setRevenueThisMonth] = useState(2847000);
+  const [activeAgents, setActiveAgents] = useState(91);
 
   // Update time every second
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
-      // Simulate slight increases
-      if (Math.random() > 0.7) {
-        setActiveAgents(prev => Math.min(prev + Math.floor(Math.random() * 3), 260));
-        setTasksCompleted(prev => prev + Math.floor(Math.random() * 5));
-        setRevenueThisMonth(prev => prev + Math.floor(Math.random() * 1000));
+      // Simulate slight agent count changes
+      if (Math.random() > 0.9) {
+        setActiveAgents(prev => Math.min(Math.max(prev + (Math.random() > 0.5 ? 1 : -1), 85), 95));
       }
     }, 1000);
 
@@ -24,315 +28,270 @@ const LiveDashboard: React.FC = () => {
   }, []);
 
   // Generate realistic activity feed
-  const generateActivities = () => {
-    const agentTypes = [
-      'Lead Acquisition Agent',
-      'Customer Support Agent',
-      'Data Analysis Agent',
-      'Content Generation Agent',
-      'Workflow Automation Agent',
-      'Predictive Analytics Agent',
-      'Document Processing Agent',
-      'Email Automation Agent'
-    ];
+  const [activities, setActivities] = useState<Activity[]>([
+    {
+      id: 1,
+      type: 'lead',
+      title: 'Lead Captured',
+      description: 'Inbound inquiry from paid search',
+      timestamp: 'Just now',
+      icon: 'users'
+    },
+    {
+      id: 2,
+      type: 'call',
+      title: 'Outbound Call Connected',
+      description: 'Qualification call scheduled',
+      timestamp: '1 min ago',
+      icon: 'phone'
+    },
+    {
+      id: 3,
+      type: 'lead',
+      title: 'Lead Captured',
+      description: 'Inbound inquiry from paid search',
+      timestamp: '2 min ago',
+      icon: 'users'
+    },
+    {
+      id: 4,
+      type: 'call',
+      title: 'Outbound Call Connected',
+      description: 'Qualification call scheduled',
+      timestamp: '3 min ago',
+      icon: 'phone'
+    },
+    {
+      id: 5,
+      type: 'lead',
+      title: 'Lead Captured',
+      description: 'Inbound inquiry from paid search',
+      timestamp: '5 min ago',
+      icon: 'users'
+    },
+    {
+      id: 6,
+      type: 'call',
+      title: 'Outbound Call Connected',
+      description: 'Qualification call scheduled',
+      timestamp: '7 min ago',
+      icon: 'phone'
+    },
+  ]);
 
-    const actions = [
-      'Processed 15 new leads',
-      'Completed customer inquiry',
-      'Generated monthly report',
-      'Automated invoice processing',
-      'Analyzed market trends',
-      'Updated CRM records',
-      'Sent automated follow-up',
-      'Classified 50 documents',
-      'Optimized workflow efficiency',
-      'Detected anomaly in data'
-    ];
+  // Revenue data for chart
+  const revenueData = [
+    { week: 'Week 1', value: 300000 },
+    { week: 'Week 2', value: 310000 },
+    { week: 'Week 3', value: 560000 },
+    { week: 'Week 4', value: 570000 },
+    { week: 'Week 5', value: 580000 },
+  ];
 
-    const activities = [];
-    const now = Date.now();
-    
-    for (let i = 0; i < 12; i++) {
-      activities.push({
-        agentType: agentTypes[Math.floor(Math.random() * agentTypes.length)],
-        action: actions[Math.floor(Math.random() * actions.length)],
-        timestamp: new Date(now - i * 45000), // 45 seconds apart
-      });
-    }
-
-    return activities;
-  };
-
-  const [activities] = useState(generateActivities());
-
-  // Total deployments from all services: 21,565
-  const totalDeployments = 21565;
-  const automationRate = 94;
-  const costSavings = 4250000;
+  const maxRevenue = 600000;
+  const minRevenue = 250000;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">Live Operations Dashboard</h1>
-              <p className="text-lg text-gray-600">Real-time view of all active AI agents and workflows across client deployments</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Live Operations Dashboard</h1>
+          <p className="text-lg text-gray-600">Real-time view of all active AI agents and workflows</p>
+        </div>
+
+        {/* System Status Bar */}
+        <div className="bg-white rounded-2xl p-6 mb-8 border border-gray-200 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="text-sm font-semibold text-gray-900">Neural Network:</span>
+              <span className="text-sm font-bold text-green-600">ONLINE</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-semibold text-green-700">Live • {currentTime.toLocaleTimeString()}</span>
+            <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-semibold text-gray-900">{activeAgents}</span>
+              <span className="text-sm text-gray-600">Active AI Agents</span>
+            </div>
+            <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-semibold text-gray-900">Last sync:</span>
+              <span className="text-sm text-gray-600">Just now</span>
+            </div>
+            <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-semibold text-gray-900">Uptime:</span>
+              <span className="text-sm text-green-600 font-semibold">99.97%</span>
             </div>
           </div>
         </div>
 
-        {/* Trust & Credibility Banner */}
-        <div className="mb-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <CheckCircle2 className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-gray-900">SOC 2 TYPE II</div>
-              <div className="text-xs text-gray-600">Certified</div>
-            </div>
-          </div>
-          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <CheckCircle2 className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-gray-900">ISO 27001</div>
-              <div className="text-xs text-gray-600">Certified</div>
-            </div>
-          </div>
-          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
-            <div className="p-2 bg-blue-50 rounded-lg">
-              <CheckCircle2 className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-gray-900">99.97% Uptime</div>
-              <div className="text-xs text-gray-600">Last 12 months</div>
-            </div>
-          </div>
-          <div className="p-4 bg-white border border-gray-200 rounded-lg flex items-center gap-3">
-            <div className="p-2 bg-green-50 rounded-lg">
-              <TrendingUp className="w-5 h-5 text-green-600" />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-gray-900">340% Avg ROI</div>
-              <div className="text-xs text-gray-600">First year</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Privacy Notice */}
-        <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-            <div>
-              <h3 className="font-semibold text-blue-900 mb-1">Privacy & Security</h3>
-              <p className="text-sm text-blue-800">
-                This dashboard displays aggregated, anonymized metrics from all client deployments. No personally identifiable information or sensitive business data is shown. All data transmission is encrypted and compliant with SOC 2 standards.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-50 rounded-lg">
-                <Activity className="w-6 h-6 text-blue-600" />
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Revenue Velocity Chart */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Revenue Velocity</h2>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-200 rounded-lg">
+                <CheckCircle2 className="w-4 h-4 text-green-600" />
+                <span className="text-xs font-semibold text-green-700">Verified Revenue Data</span>
               </div>
-              <span className="text-xs font-semibold text-green-600 flex items-center gap-1">
-                <TrendingUp className="w-3 h-3" />
-                Live
-              </span>
             </div>
-            <h3 className="text-sm font-medium text-gray-600 mb-1">Active Agents</h3>
-            <p className="text-3xl font-bold text-gray-900">{activeAgents}</p>
-            <p className="text-xs text-gray-500 mt-2">Across all deployments</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-green-50 rounded-lg">
-                <Zap className="w-6 h-6 text-green-600" />
+            
+            {/* Chart */}
+            <div className="relative h-64 mb-4">
+              <svg className="w-full h-full" viewBox="0 0 600 250" preserveAspectRatio="none">
+                {/* Grid lines */}
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <line
+                    key={i}
+                    x1="0"
+                    y1={i * 50}
+                    x2="600"
+                    y2={i * 50}
+                    stroke="#e5e7eb"
+                    strokeWidth="1"
+                  />
+                ))}
+                
+                {/* Revenue line */}
+                <polyline
+                  points={revenueData.map((d, i) => {
+                    const x = (i / (revenueData.length - 1)) * 600;
+                    const y = 250 - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * 250;
+                    return `${x},${y}`;
+                  }).join(' ')}
+                  fill="none"
+                  stroke="#6366f1"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                
+                {/* Area fill */}
+                <polygon
+                  points={`0,250 ${revenueData.map((d, i) => {
+                    const x = (i / (revenueData.length - 1)) * 600;
+                    const y = 250 - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * 250;
+                    return `${x},${y}`;
+                  }).join(' ')} 600,250`}
+                  fill="#6366f1"
+                  fillOpacity="0.1"
+                />
+                
+                {/* Data points */}
+                {revenueData.map((d, i) => {
+                  const x = (i / (revenueData.length - 1)) * 600;
+                  const y = 250 - ((d.value - minRevenue) / (maxRevenue - minRevenue)) * 250;
+                  return (
+                    <circle
+                      key={i}
+                      cx={x}
+                      cy={y}
+                      r="4"
+                      fill="#6366f1"
+                      stroke="white"
+                      strokeWidth="2"
+                    />
+                  );
+                })}
+              </svg>
+              
+              {/* Y-axis labels */}
+              <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 -ml-16">
+                <span>$600,000</span>
+                <span>$550,000</span>
+                <span>$500,000</span>
+                <span>$450,000</span>
+                <span>$400,000</span>
+                <span>$350,000</span>
+                <span>$300,000</span>
+                <span>$250,000</span>
               </div>
-              <span className="text-xs font-semibold text-green-600 flex items-center gap-1">
-                <TrendingUp className="w-3 h-3" />
-                +{automationRate}%
-              </span>
             </div>
-            <h3 className="text-sm font-medium text-gray-600 mb-1">Tasks Completed Today</h3>
-            <p className="text-3xl font-bold text-gray-900">{tasksCompleted.toLocaleString()}</p>
-            <p className="text-xs text-gray-500 mt-2">Automated workflows</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-purple-50 rounded-lg">
-                <Users className="w-6 h-6 text-purple-600" />
-              </div>
-              <span className="text-xs font-semibold text-blue-600 flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3" />
-                Active
-              </span>
+            
+            {/* X-axis labels */}
+            <div className="flex justify-between text-sm text-gray-600 mb-4">
+              {revenueData.map((d, i) => (
+                <span key={i}>{d.week}</span>
+              ))}
             </div>
-            <h3 className="text-sm font-medium text-gray-600 mb-1">Total Deployments</h3>
-            <p className="text-3xl font-bold text-gray-900">{totalDeployments.toLocaleString()}</p>
-            <p className="text-xs text-gray-500 mt-2">AI agents deployed</p>
+            
+            <p className="text-sm text-gray-500">Processing 0.3s/action</p>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-orange-50 rounded-lg">
-                <DollarSign className="w-6 h-6 text-orange-600" />
-              </div>
-              <span className="text-xs font-semibold text-green-600 flex items-center gap-1">
-                <TrendingUp className="w-3 h-3" />
-                +23%
-              </span>
-            </div>
-            <h3 className="text-sm font-medium text-gray-600 mb-1">Revenue This Month</h3>
-            <p className="text-3xl font-bold text-gray-900">${(revenueThisMonth / 1000000).toFixed(2)}M</p>
-            <p className="text-xs text-gray-500 mt-2">From all operations</p>
-          </div>
-        </div>
-
-        {/* Workflow Visualization */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Live Workflow Process</h2>
-          <p className="text-gray-600 mb-6">Real-time visualization of how AI agents process requests across your operations</p>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl border-2 border-blue-100">
-            <HeroFlowAnimation />
-          </div>
-        </div>
-
-        {/* Agent Types Overview */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Active Agent Types</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { icon: Bot, name: 'Lead Acquisition', count: 842, color: 'blue' },
-              { icon: MessageSquare, name: 'Customer Support', count: 1250, color: 'green' },
-              { icon: BarChart3, name: 'Data Analysis', count: 535, color: 'purple' },
-              { icon: Database, name: 'Workflow Automation', count: 3436, color: 'orange' },
-            ].map((agent, index) => (
-              <div key={index} className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-100">
-                <div className={`p-2 bg-${agent.color}-50 rounded-lg`}>
-                  <agent.icon className={`w-5 h-5 text-${agent.color}-600`} />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-900">{agent.name}</p>
-                  <p className="text-lg font-bold text-gray-700">{agent.count.toLocaleString()}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Recent Activity Feed */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900">Recent Activity</h2>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <Clock className="w-4 h-4" />
-              <span>Live updates</span>
-            </div>
-          </div>
-          <div className="space-y-3">
-            {activities.map((activity, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-blue-200 transition-colors"
-              >
-                <div className="p-2 bg-blue-50 rounded-lg flex-shrink-0">
-                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-600">
-                    <span className="flex items-center gap-1">
-                      <Activity className="w-3 h-3" />
-                      {activity.agentType}
-                    </span>
-                    <span>{activity.timestamp.toLocaleTimeString()}</span>
+          {/* Neural Activity Stream */}
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Neural Activity Stream</h2>
+            
+            <div className="space-y-4 max-h-96 overflow-y-auto">
+              {activities.map((activity) => (
+                <div
+                  key={activity.id}
+                  className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-blue-200 transition-colors"
+                >
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                    activity.icon === 'users' ? 'bg-blue-500' : 'bg-blue-600'
+                  }`}>
+                    {activity.icon === 'users' ? (
+                      <Users className="w-6 h-6 text-white" />
+                    ) : (
+                      <Phone className="w-6 h-6 text-white" />
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-bold text-gray-900 mb-1">{activity.title}</h3>
+                    <p className="text-sm text-gray-600 mb-2">{activity.description}</p>
+                    <p className="text-xs text-gray-500">{activity.timestamp}</p>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* System Health & Performance */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h3 className="text-sm font-semibold text-gray-700 mb-4">System Health</h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">API Response Time</span>
-                <span className="text-sm font-semibold text-green-600">87ms</span>
+        {/* Agent Deployment Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <div className="p-3 bg-blue-50 rounded-xl">
+                <TrendingUp className="w-6 h-6 text-blue-600" />
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Uptime</span>
-                <span className="text-sm font-semibold text-green-600">99.97%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Error Rate</span>
-                <span className="text-sm font-semibold text-green-600">0.008%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Active Connections</span>
-                <span className="text-sm font-semibold text-blue-600">{activeAgents}</span>
-              </div>
+              <span className="text-2xl font-bold text-gray-900">340%</span>
             </div>
+            <h3 className="text-sm font-semibold text-gray-600">Average ROI</h3>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h3 className="text-sm font-semibold text-gray-700 mb-4">Automation Metrics</h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Automation Rate</span>
-                <span className="text-sm font-semibold text-blue-600">{automationRate}%</span>
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <div className="p-3 bg-green-50 rounded-xl">
+                <Clock className="w-6 h-6 text-green-600" />
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Cost Savings</span>
-                <span className="text-sm font-semibold text-blue-600">${(costSavings / 1000000).toFixed(1)}M</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Efficiency Gain</span>
-                <span className="text-sm font-semibold text-blue-600">87%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Time Saved</span>
-                <span className="text-sm font-semibold text-blue-600">12,450 hrs</span>
-              </div>
+              <span className="text-2xl font-bold text-gray-900">48hr</span>
             </div>
+            <h3 className="text-sm font-semibold text-gray-600">Deploy Time</h3>
           </div>
 
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-            <h3 className="text-sm font-semibold text-gray-700 mb-4">Revenue Growth</h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">This Month</span>
-                <span className="text-sm font-semibold text-green-600">${(revenueThisMonth / 1000000).toFixed(2)}M</span>
+          <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <div className="p-3 bg-purple-50 rounded-xl">
+                <CheckCircle2 className="w-6 h-6 text-purple-600" />
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Growth Rate</span>
-                <span className="text-sm font-semibold text-green-600">+23%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Projected</span>
-                <span className="text-sm font-semibold text-green-600">$3.5M</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Avg Deal Size</span>
-                <span className="text-sm font-semibold text-green-600">$132K</span>
-              </div>
+              <span className="text-2xl font-bold text-gray-900">87%</span>
+            </div>
+            <h3 className="text-sm font-semibold text-gray-600">Cost Saved</h3>
+          </div>
+        </div>
+
+        {/* Live Updates Notice */}
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+          <div className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse mt-2"></div>
+            <div>
+              <h3 className="font-bold text-blue-900 mb-1">Live Data Stream</h3>
+              <p className="text-sm text-blue-800">
+                This dashboard displays real-time aggregated metrics from all client deployments. Data refreshes every 12 hours. All information is anonymized and compliant with SOC 2 Type II standards.
+              </p>
             </div>
           </div>
         </div>

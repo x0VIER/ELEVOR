@@ -3,6 +3,7 @@ import React from 'react';
 interface Logo {
   name: string;
   icon?: React.ReactNode;
+  logo?: string;
 }
 
 interface LogoMarqueeProps {
@@ -24,9 +25,13 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({ logos, title }) => {
             {[...logos, ...logos].map((logo, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center px-8 py-4 mx-4 bg-white rounded-lg border border-gray-200 shadow-sm min-w-[180px]"
+                className="flex items-center justify-center px-8 py-4 mx-4 bg-white rounded-lg border border-gray-200 shadow-sm min-w-[180px] hover:shadow-md transition-shadow"
               >
-                {logo.icon ? (
+                {logo.logo ? (
+                  <div className="flex items-center gap-3">
+                    <img src={logo.logo} alt={logo.name} className="h-8 w-auto object-contain" />
+                  </div>
+                ) : logo.icon ? (
                   <div className="flex items-center gap-2">
                     {logo.icon}
                     <span className="text-lg font-semibold text-gray-700">{logo.name}</span>
