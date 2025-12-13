@@ -1,8 +1,10 @@
-# ELEVOR V7 Hero Animation Update
+# ELEVOR V7 ReactFlow Enhancement
 
-## ReactFlow Hero Animation
-- [x] Create compact ReactFlow component for hero section
-- [x] Add animated nodes showing AI agent workflow
-- [x] Add smooth transitions and data flow animations
-- [x] Replace static image with ReactFlow animation
-- [x] Test animation performance and responsiveness
+## ReactFlow Hero Animation Improvements
+- [x] Remove box/border around ReactFlow
+- [x] Hide ReactFlow attribution text
+- [x] Replace generic nodes with actual ELEVOR services
+- [x] Ensure all nodes are visible on screen (not cut off)
+- [x] Add dynamic reactive movement to each node
+- [x] Make nodes represent: Lead Acquisition, Customer Support, Data Analysis, Content Creation, etc.
+- [x] Test visibility and positioning

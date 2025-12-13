@@ -4,7 +4,6 @@ import {
   Node,
   Edge,
   Background,
-  Controls,
   useNodesState,
   useEdgesState,
   MarkerType,
@@ -13,57 +12,129 @@ import '@xyflow/react/dist/style.css';
 
 const initialNodes: Node[] = [
   {
-    id: '1',
+    id: 'input',
     type: 'default',
-    data: { label: '📥 Input Data' },
-    position: { x: 50, y: 150 },
-    style: { background: '#EFF6FF', border: '2px solid #2563EB', borderRadius: '8px', padding: '10px', fontSize: '12px' },
+    data: { label: '📊 Data' },
+    position: { x: 20, y: 180 },
+    style: { 
+      background: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)', 
+      color: 'white',
+      border: 'none',
+      borderRadius: '12px', 
+      padding: '16px 20px', 
+      fontSize: '14px',
+      fontWeight: '600',
+      boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+    },
   },
   {
-    id: '2',
+    id: 'lead',
     type: 'default',
-    data: { label: '🤖 AI Agent 1' },
-    position: { x: 250, y: 50 },
-    style: { background: '#DBEAFE', border: '2px solid #3B82F6', borderRadius: '8px', padding: '10px', fontSize: '12px' },
+    data: { label: '🎯 Leads' },
+    position: { x: 200, y: 30 },
+    style: { 
+      background: 'linear-gradient(135deg, #10B981 0%, #059669 100%)', 
+      color: 'white',
+      border: 'none',
+      borderRadius: '12px', 
+      padding: '16px 20px', 
+      fontSize: '14px',
+      fontWeight: '600',
+      boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
+    },
   },
   {
-    id: '3',
+    id: 'support',
     type: 'default',
-    data: { label: '🤖 AI Agent 2' },
-    position: { x: 250, y: 150 },
-    style: { background: '#DBEAFE', border: '2px solid #3B82F6', borderRadius: '8px', padding: '10px', fontSize: '12px' },
+    data: { label: '💬 Support' },
+    position: { x: 200, y: 120 },
+    style: { 
+      background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)', 
+      color: 'white',
+      border: 'none',
+      borderRadius: '12px', 
+      padding: '16px 20px', 
+      fontSize: '14px',
+      fontWeight: '600',
+      boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+    },
   },
   {
-    id: '4',
+    id: 'data',
     type: 'default',
-    data: { label: '🤖 AI Agent 3' },
-    position: { x: 250, y: 250 },
-    style: { background: '#DBEAFE', border: '2px solid #3B82F6', borderRadius: '8px', padding: '10px', fontSize: '12px' },
+    data: { label: '📈 Analytics' },
+    position: { x: 200, y: 210 },
+    style: { 
+      background: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)', 
+      color: 'white',
+      border: 'none',
+      borderRadius: '12px', 
+      padding: '16px 20px', 
+      fontSize: '14px',
+      fontWeight: '600',
+      boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)',
+    },
   },
   {
-    id: '5',
+    id: 'content',
     type: 'default',
-    data: { label: '⚙️ Processing' },
-    position: { x: 450, y: 150 },
-    style: { background: '#FEF3C7', border: '2px solid #F59E0B', borderRadius: '8px', padding: '10px', fontSize: '12px' },
+    data: { label: '✍️ Content' },
+    position: { x: 200, y: 300 },
+    style: { 
+      background: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)', 
+      color: 'white',
+      border: 'none',
+      borderRadius: '12px', 
+      padding: '16px 20px', 
+      fontSize: '14px',
+      fontWeight: '600',
+      boxShadow: '0 4px 12px rgba(236, 72, 153, 0.3)',
+    },
   },
   {
-    id: '6',
+    id: 'ai',
     type: 'default',
-    data: { label: '✅ Output' },
-    position: { x: 650, y: 150 },
-    style: { background: '#D1FAE5', border: '2px solid #10B981', borderRadius: '8px', padding: '10px', fontSize: '12px' },
+    data: { label: '🤖 AI Engine' },
+    position: { x: 420, y: 165 },
+    style: { 
+      background: 'linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)', 
+      color: 'white',
+      border: 'none',
+      borderRadius: '12px', 
+      padding: '16px 20px', 
+      fontSize: '14px',
+      fontWeight: '600',
+      boxShadow: '0 4px 12px rgba(6, 182, 212, 0.3)',
+    },
+  },
+  {
+    id: 'output',
+    type: 'default',
+    data: { label: '✅ Results' },
+    position: { x: 620, y: 165 },
+    style: { 
+      background: 'linear-gradient(135deg, #14B8A6 0%, #0D9488 100%)', 
+      color: 'white',
+      border: 'none',
+      borderRadius: '12px', 
+      padding: '16px 20px', 
+      fontSize: '14px',
+      fontWeight: '600',
+      boxShadow: '0 4px 12px rgba(20, 184, 166, 0.3)',
+    },
   },
 ];
 
 const initialEdges: Edge[] = [
-  { id: 'e1-2', source: '1', target: '2', animated: true, style: { stroke: '#2563EB', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#2563EB' } },
-  { id: 'e1-3', source: '1', target: '3', animated: true, style: { stroke: '#2563EB', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#2563EB' } },
-  { id: 'e1-4', source: '1', target: '4', animated: true, style: { stroke: '#2563EB', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#2563EB' } },
-  { id: 'e2-5', source: '2', target: '5', animated: true, style: { stroke: '#3B82F6', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
-  { id: 'e3-5', source: '3', target: '5', animated: true, style: { stroke: '#3B82F6', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
-  { id: 'e4-5', source: '4', target: '5', animated: true, style: { stroke: '#3B82F6', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
-  { id: 'e5-6', source: '5', target: '6', animated: true, style: { stroke: '#F59E0B', strokeWidth: 2 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#F59E0B' } },
+  { id: 'e-input-lead', source: 'input', target: 'lead', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
+  { id: 'e-input-support', source: 'input', target: 'support', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
+  { id: 'e-input-data', source: 'input', target: 'data', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
+  { id: 'e-input-content', source: 'input', target: 'content', animated: true, style: { stroke: '#3B82F6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#3B82F6' } },
+  { id: 'e-lead-ai', source: 'lead', target: 'ai', animated: true, style: { stroke: '#10B981', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#10B981' } },
+  { id: 'e-support-ai', source: 'support', target: 'ai', animated: true, style: { stroke: '#8B5CF6', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#8B5CF6' } },
+  { id: 'e-data-ai', source: 'data', target: 'ai', animated: true, style: { stroke: '#F59E0B', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#F59E0B' } },
+  { id: 'e-content-ai', source: 'content', target: 'ai', animated: true, style: { stroke: '#EC4899', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#EC4899' } },
+  { id: 'e-ai-output', source: 'ai', target: 'output', animated: true, style: { stroke: '#06B6D4', strokeWidth: 3 }, markerEnd: { type: MarkerType.ArrowClosed, color: '#06B6D4' } },
 ];
 
 export default function HeroFlowAnimation() {
@@ -71,11 +142,11 @@ export default function HeroFlowAnimation() {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [activeNode, setActiveNode] = useState(0);
 
-  // Animate nodes pulsing effect
+  // Cycle through nodes for pulsing effect
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveNode((prev) => (prev + 1) % nodes.length);
-    }, 1500);
+    }, 1200);
 
     return () => clearInterval(interval);
   }, [nodes.length]);
@@ -87,23 +158,23 @@ export default function HeroFlowAnimation() {
         ...node,
         style: {
           ...node.style,
-          transform: index === activeNode ? 'scale(1.1)' : 'scale(1)',
-          transition: 'transform 0.3s ease-in-out',
-          boxShadow: index === activeNode ? '0 0 20px rgba(37, 99, 235, 0.5)' : 'none',
+          transform: index === activeNode ? 'scale(1.15)' : 'scale(1)',
+          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          filter: index === activeNode ? 'brightness(1.2)' : 'brightness(1)',
         },
       }))
     );
   }, [activeNode, setNodes]);
 
   return (
-    <div className="w-full h-[400px] bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg overflow-hidden border border-blue-100">
+    <div className="w-full h-[450px] relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         fitView
-        attributionPosition="bottom-right"
+        fitViewOptions={{ padding: 0.15, maxZoom: 0.95, minZoom: 0.95 }}
         proOptions={{ hideAttribution: true }}
         nodesDraggable={false}
         nodesConnectable={false}
@@ -111,8 +182,14 @@ export default function HeroFlowAnimation() {
         zoomOnScroll={false}
         panOnDrag={false}
         zoomOnDoubleClick={false}
+        style={{ background: 'transparent' }}
       >
-        <Background color="#93C5FD" gap={16} />
+        <Background 
+          color="#E0E7FF" 
+          gap={20} 
+          size={1}
+          style={{ opacity: 0.3 }}
+        />
       </ReactFlow>
     </div>
   );
