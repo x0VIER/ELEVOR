@@ -5,13 +5,11 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
 import { adminRouter } from "./adminRouters";
-import { dashboardRouter } from "./dashboardRouters";
 import * as db from "./db";
 
 export const appRouter = router({
   system: systemRouter,
   admin: adminRouter,
-  dashboard: dashboardRouter,
   
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

@@ -16,7 +16,6 @@ import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
-import LiveDashboard from './pages/LiveDashboard';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Home');
@@ -81,8 +80,6 @@ function App() {
         return <Contact />;
       case 'Admin':
         return <Admin />;
-      case 'LiveDashboard':
-        return <LiveDashboard />;
       default: 
         return <Home setPage={handlePageChange} setCategory={handleCategoryChange} />;
     }
